@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.violationsystem.mapper.MsgMapper">
+    <!--<resultMap id="StudentResultMap" type="com.example.violationsystem.pojo.Student">-->
+    <!--<id property="snum" column="snum" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="sname" column="sname" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="sex" column="sex" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="sinstitute" column="sinstitute" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="phone" column="phone" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="id_card" column="idCard" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="password" column="password" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--</resultMap>-->
+
+    <insert id="addMsg" parameterType="com.example.violationsystem.pojo.Message">
+
+        insert into message (msg_type,msg_remarks,msg_date,msg_num,snum,tnum) values (#{msgType},#{msgRemarks},#{msgDate},#{msgNum},#{snum},#{tnum})
+
+    </insert>
+    <update id="upMsg" parameterType="com.example.violationsystem.pojo.Message">
+        update message set msg_type=#{msgType},msg_remarks=#{msgRemarks},msg_date=#{msgDate},snum=#{snum},tnum=#{tnum} where msg_num=#{msgNum}
+    </update>
+    <delete id="delMsg">
+        delete from message where msg_num=#{msgNum}
+    </delete>
+
+
+    <select id="getMsgBySnum" resultType="java.util.HashMap">
+            select * from message,student,teacher where message.snum=#{snum} and student.snum=#{snum} and teacher.tnum=message.tnum
+    </select>
+
+    <select id="getMsgBySinstitute" resultType="java.util.HashMap">
+                select * from message,student,teacher where message.snum in (select snum from student where sinstitute=#{sinstitute}) and student.snum=message.snum and teacher.tnum=message.tnum
+    </select>
+    <select id="getMsgAll" resultType="java.util.HashMap">
+                select * from message,student,teacher where message.snum=student.snum and message.tnum=teacher.tnum
+    </select>
+
+
+</mapper>

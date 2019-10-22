@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "mybatis-3-config.dtd">
+<configuration>
+
+    <!--开启驼峰命名转换-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+    <!--配置实体类目录，达到简化的目的-->
+    <typeAliases>
+        <package name="com.example.violationsystem.pojo"/>
+    </typeAliases>
+
+</configuration>

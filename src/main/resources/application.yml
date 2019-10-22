@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    username: root
+    password: hebeidaxue2016.
+    url: jdbc:mysql://123.207.171.15:3306/violation?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  freemarker:
+    suffix: .html
+    content-type: text/html
+    enabled: true
+    cache: false #关闭缓存
+    charset: UTF-8
+    template-loader-path: classpath:/templates/
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+  mvc:
+    static-path-pattern: /**  #设置static为静态文件根目录
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.example.violationsystem.pojo #设置实体类路径

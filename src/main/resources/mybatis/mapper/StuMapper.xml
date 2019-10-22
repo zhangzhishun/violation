@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.violationsystem.mapper.StuMapper">
+    <!--<resultMap id="StudentResultMap" type="com.example.violationsystem.pojo.Student">-->
+        <!--<id property="snum" column="snum" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--<result property="sname" column="sname" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--<result property="sex" column="sex" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--<result property="sinstitute" column="sinstitute" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--<result property="phone" column="phone" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--<result property="idCard" column="id_card" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--<result property="password" column="password" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--</resultMap>-->
+
+    <insert id="addStu" parameterType="com.example.violationsystem.pojo.Student">
+
+        insert into student (snum,sname,sex,sinstitute,phone,id_card,password) values (#{snum},#{sname},#{sex},#{sinstitute},#{phone},#{idCard},#{password})
+
+    </insert>
+    <update id="upStu" parameterType="com.example.violationsystem.pojo.Student">
+        update student set sname=#{sname},sex=#{sex},sinstitute=#{sinstitute},phone=#{phone},id_card=#{idCard} where snum=#{snum}
+    </update>
+    <delete id="delStu">
+        delete from student where snum=#{snum}
+    </delete>
+
+    <select id="getStuBySnum" resultType="com.example.violationsystem.pojo.Student">
+        select * from student where snum=#{snum}
+    </select>
+    <select id="getStuBySinstitute" resultType="com.example.violationsystem.pojo.Student">
+        select * from student where sinstitute=#{sinstitute}
+    </select>
+    <select id="getStuAll" resultType="com.example.violationsystem.pojo.Student">
+        select * from student
+    </select>
+
+
+</mapper>

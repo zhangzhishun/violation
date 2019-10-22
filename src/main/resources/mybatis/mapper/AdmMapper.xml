@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.violationsystem.mapper.AdmMapper">
+    <!--<resultMap id="StudentResultMap" type="com.example.violationsystem.pojo.Student">-->
+    <!--<id property="snum" column="snum" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="sname" column="sname" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="sex" column="sex" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="sinstitute" column="sinstitute" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="phone" column="phone" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="id_card" column="idCard" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--<result property="password" column="password" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    <!--</resultMap>-->
+
+    <select id="getPassword" resultType="java.lang.String">
+        select  adm_password from admin where adm_num=#{admName}
+    </select>
+
+
+</mapper>

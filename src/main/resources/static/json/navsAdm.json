@@ -1,0 +1,24 @@
+{
+  "contentManagement": [
+    {
+      "title": "学生违纪管理",
+      "icon": "&#xe634;",
+      "href": "/teaManage",
+      "spread": false
+    },
+    {
+      "title": "学生信息管理",
+      "icon": "&#xe634;",
+      "href": "/stuListPage",
+      "spread": false
+    }
+  ],
+  "memberCenter": [
+  ],
+  "systemeSttings": [
+  ],
+  "seraphApi": [
+  ]
+}
+
+
