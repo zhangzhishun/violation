@@ -17,8 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
@@ -230,8 +229,7 @@ public class FunController {
         if (null != file) {
             String myFileName = file.getOriginalFilename();// 文件原名称
             System.out.println(myFileName);
-            String fileName = Integer.toHexString(new Random().nextInt()) +"."+ myFileName.
-                    substring(myFileName.lastIndexOf(".") + 1);
+            String fileName = "123.docx";
             String path="E:\\upload\\";//设置文件保存路径
             File fileDir=new File(path);
             if (!fileDir.exists()) { //如果不存在 则创建
@@ -258,5 +256,47 @@ public class FunController {
         //return jsonObject.toString();
     }
 
+
+    @RequestMapping("/download")
+    private String download(HttpServletResponse response){
+        String downloadFilePath = "E:\\upload\\123.docx";//被下载的文件在服务器中的路径,
+        File file = new File(downloadFilePath);
+        if (file.exists()) {
+            response.setContentType("application/force-download");// 设置强制下载不打开
+            response.addHeader("Content-Disposition", "attachment;fileName=" + "123.docx");
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = null;
+            BufferedInputStream bis = null;
+            try {
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+                OutputStream outputStream = response.getOutputStream();
+                int i = bis.read(buffer);
+                while (i != -1) {
+                    outputStream.write(buffer, 0, i);
+                    i = bis.read(buffer);
+                }
+                return "下载成功";
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (bis != null) {
+                    try {
+                        bis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (fis != null) {
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return "下载失败";
+    }
 
 }
