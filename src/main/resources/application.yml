@@ -6,6 +6,12 @@ spring:
     password: hebeidaxue2016.
     url: jdbc:mysql://123.207.171.15:3306/violation?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000
+      connection-test-query: SELECT 1
+
   freemarker:
     suffix: .html
     content-type: text/html
@@ -22,8 +28,8 @@ spring:
     restart:
       enabled: true  #设置开启热部署
 
+
 mybatis:
   config-location: classpath:mybatis/mybatis-config
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.example.violationsystem.pojo #设置实体类路径
-  maxLifetime: 1800000000

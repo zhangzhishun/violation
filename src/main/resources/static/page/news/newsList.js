@@ -27,7 +27,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
             {field: 'snum', title: '学生学号', align: 'center'},
             {field: 'sname', title: '学生姓名', align: 'center'},
             {field: 'msg_date', title: '处分时间', align: 'center'},
-            {title: '操作', width: 200, templet: '#newsListBar', fixed: "right", align: "center"},
+            {title: '操作', width: 100, templet: '#newsListBar', fixed: "right", align: "center"},
             {title: '文件操作',templet: '#file',align: 'center'},
             {field: 'appeal',title: '意见', align: 'center'},
             {field: 'examine',title: '审批', align: 'center'}

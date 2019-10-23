@@ -7,13 +7,19 @@ import com.example.violationsystem.service.StuService;
 import com.example.violationsystem.service.TeaService;
 import com.google.gson.Gson;
 import com.sun.org.apache.regexp.internal.RE;
+import com.xiaoleilu.hutool.json.JSONObject;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 
 @Controller
@@ -210,6 +216,46 @@ public class FunController {
     public String test(){
 
         return "test";
+    }
+    /** 上传文件 */
+    @GetMapping("/uploadNewWindow")
+    public String uploadNewWindow(){
+        return "uploadNewWindow";
+    }
+
+    /** 上传文件 */
+    @RequestMapping(value = "/upload", method = {RequestMethod.POST})
+    @ResponseBody
+    public String upload(@RequestParam MultipartFile file, HttpServletRequest request)throws IllegalStateException, IOException {
+        if (null != file) {
+            String myFileName = file.getOriginalFilename();// 文件原名称
+            System.out.println(myFileName);
+            String fileName = Integer.toHexString(new Random().nextInt()) +"."+ myFileName.
+                    substring(myFileName.lastIndexOf(".") + 1);
+            String path="E:\\upload\\";//设置文件保存路径
+            File fileDir=new File(path);
+            if (!fileDir.exists()) { //如果不存在 则创建
+                fileDir.mkdirs();
+            }
+            File localFile = new File(path+fileName);
+            try {
+                file.transferTo(localFile);
+                System.out.println(path+fileName);
+                //return path+fileName;
+            } catch (IllegalStateException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("文件为空");
+        }
+        JSONObject jsonObject = new JSONObject("{status:200}");
+        System.out.println(jsonObject);
+        return jsonObject.toString();
+        //return jsonObject.toString();
     }
 
 
