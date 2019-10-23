@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>学生违纪管理-学生</title>
+	<title>学生违纪管理-学生管理委员会</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,20 +23,15 @@
 
 
 	<!--操作-->
-	<script type="text/html" id="newsListBar">
-		<a class="layui-btn layui-btn-xs" lay-filter="appeal" lay-submit>申诉</a>
-		<a class="layui-btn layui-btn-xs" lay-event="none">查看申诉信息</a>
+	<script type="text/html" id="stumNewsListBar">
+		<a class="layui-btn layui-btn-xs" lay-event="none">修改</a>
 		<!--<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
 		<a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="look">预览</a>&ndash;&gt;-->
 	</script>
 
-	<!--文件操作-->
-	<script type="text/html" id="file">
-		<a class="layui-btn layui-btn-xs" lay-filter="appeal" lay-submit>文件下载</a>
-	</script>
 </form>
 <script type="text/javascript" src="/layui/layui.js"></script>
-<script type="text/javascript" src="/page/news/newsList.js"></script>
+<script type="text/javascript" src="/page/news/stumNewsList.js"></script>
 <!-- 申诉 -->
 <script>
 	layui.use(['layer','form'], function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')

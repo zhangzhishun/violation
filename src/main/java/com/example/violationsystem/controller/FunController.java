@@ -30,7 +30,9 @@ public class FunController {
     public String teaManage(@CookieValue("role") String role) {
         if (role.equals("stu")) {
             return "stuManage";
-        } else {
+        } else if(role.equals("stuM")) {
+            return "stuMManage";
+        } else{
             return "teaManage";
         }
     }
@@ -38,7 +40,6 @@ public class FunController {
     //违纪信息增加页
     @RequestMapping(value = "/vioAddPage")
     public String vioAddPage() {
-
         return "vioAddPage";
     }
 
@@ -98,7 +99,36 @@ public class FunController {
 
 //        System.out.println();
         String dataJson = new Gson().toJson(list);
+        System.out.println(dataJson);
+        return "{\"code\":" + 0 + ",\"msg\":\"" + msg + "\",\"count\":" + list.size() + ",\"data\":" + dataJson + "}";
+    }
 
+
+    //返回违纪列表
+    @RequestMapping(value = "/stumGetVioList")
+    @ResponseBody
+    public String stumGetVioList(HttpServletResponse response, @CookieValue("userName") String userName, @CookieValue("role") String role) {
+
+        response.setStatus(200);
+        String msg = "";
+        List<HashMap<String, String>> list = null;
+        if (role.equals("tea")) {
+            String institute = teaService.getTeaByTnum(userName).getTinstitute();
+            list = msgService.getMsgBySinstitute(institute);
+        } else if (role.equals("stu")) {
+            list = msgService.getMsgBySnum(userName);
+        } else if (role.equals("stuM")) {
+            list = msgService.getMsgAll();
+        } else if (role.equals("adm")) {
+            list = msgService.getMsgAll();
+        }
+
+        System.out.println(userName);
+
+
+//        System.out.println();
+        String dataJson = new Gson().toJson(list);
+        System.out.println(dataJson);
         return "{\"code\":" + 0 + ",\"msg\":\"" + msg + "\",\"count\":" + list.size() + ",\"data\":" + dataJson + "}";
     }
 
@@ -143,7 +173,6 @@ public class FunController {
         return "{\"code\":\"" + response.getStatus() + "\",\"detail\":\"" + detail + "\"}";
     }
 
-
     //返回学生列表
     @RequestMapping(value = "/getStuList")
     @ResponseBody
@@ -168,6 +197,19 @@ public class FunController {
     @RequestMapping(value = "stuAddPage")
     public String stuAddPage() {
         return "stuAddPage";
+    }
+
+
+    /** 填写申诉表 */
+    @GetMapping("/stuAppeal")
+    public String stuAppeal(){
+        return "stuAppeal";
+    }
+    /** 填写申诉表 */
+    @GetMapping("/test")
+    public String test(){
+
+        return "test";
     }
 
 

@@ -9,28 +9,21 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
     //违纪列表
     var tableIns = table.render({
         elem: '#newsList',
-        url: '/getVioList',
+        url: '/stumGetVioList',
         cellMinWidth: 95,
         page: false,
         height: "full-125",
         limit: 20,
         limits: [10, 15, 20, 25],
-        id: "newsListTable",
+        id: "stumNewsListTable",
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
-            {field: 'msg_num', title: '处分编号', align: "center"},
-            {field: 'msg_type', title: '处分类型', align: 'center'},
-            {field: 'msg_remarks', title: '备注', align: 'center'},
-            {field: 'sinstitute', title: '学生学院', align: 'center'},
-            {field: 'tnum', title: '辅导员工号', align: 'center'},
-            {field: 'tname', title: '辅导员姓名', align: 'center'},
-            {field: 'snum', title: '学生学号', align: 'center'},
-            {field: 'sname', title: '学生姓名', align: 'center'},
-            {field: 'msg_date', title: '处分时间', align: 'center'},
-            {title: '操作', width: 200, templet: '#newsListBar', fixed: "right", align: "center"},
-            {title: '文件操作',templet: '#file',align: 'center'},
+            {field: 'msg_num', title: '违纪ID', align: "center"},
+            {title: '处理期限', templet: function () {return "7天";}, align: 'center'},
+            {field: 'msg_remarks', title: '备注申诉原因', align: 'center'},
             {field: 'appeal',title: '意见', align: 'center'},
-            {field: 'examine',title: '审批', align: 'center'}
+            {title: '操作', width: 200, templet: '#stumNewsListBar', fixed: "right", align: "center"},
+            {field: 'examine',title: '备注', align: 'center'}
             // {
             //     field: 'msgDate', title: '处分时间', align: 'center', templet: function (d) {
             //         return '<input type="checkbox" name="newsTop" lay-filter="newsTop" lay-skin="switch" lay-text="是|否" ' + d.newsTop + '>'

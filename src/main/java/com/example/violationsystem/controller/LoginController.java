@@ -35,8 +35,11 @@ public class LoginController {
         if (role.equals("tea")) return "indexTea";
         else if (role.equals("stu")) return "indexStu";
         else if (role.equals("adm")) return "indexAdm";
+        else if (role.equals("stuM")){
+            System.out.println("委员会角色");
+            return "indexStuM";
+        }
         else return "redirect:/login";
-
     }
 
 
@@ -66,6 +69,14 @@ public class LoginController {
         } else if (role.equals("tea")) {
             Teacher teacher = teaService.getTeaByTnum(userName);
             if (teacher == null || !teacher.getPassword().equals(password)) {
+                return "{\"code\":\"" + response.getStatus() + "\",\"detail\":\"" + detail + "\"}";
+            }
+        } else if (role.equals("stuM")) {
+            System.out.println("角色：" +role);
+            Teacher teacher = teaService.getTeaByTnum(userName);
+            System.out.println("教师密码"+teacher.getPassword());
+            if (teacher == null || !teacher.getPassword().equals(password)) {
+                System.out.println("结果："+detail);
                 return "{\"code\":\"" + response.getStatus() + "\",\"detail\":\"" + detail + "\"}";
             }
         } else if (role.equals("adm")) {
@@ -142,6 +153,8 @@ public class LoginController {
             Student student = stuService.getStuBySnum(userName);
             password = student.getPassword();
         } else if (role.equals("tea")) {
+            password = teaService.getTeaByTnum(userName).getPassword();
+        }  else if (role.equals("stuM")) {
             password = teaService.getTeaByTnum(userName).getPassword();
         } else if (role.equals("adm")) {
             password =admService.getPassword(userName);

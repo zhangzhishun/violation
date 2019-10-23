@@ -99,4 +99,32 @@ layui.config({
             return false;
         }
     )
+
+    //登录按钮事件4
+    form.on("submit(login4)", function (data) {
+            //window.location.href = "/index";
+            userName = document.getElementById("userName").value;
+            password = document.getElementById("password").value;
+            window.event.returnValue = false
+
+            $.ajax({
+                url: "/check?userName=" + userName + "&password=" + password + "&role=stuM",
+                type: "get",
+                async: true,
+                dataType: "json",//返回的数据类型
+                success: function (data) {
+                    window.location.href = "/index";
+                },
+                error: function (e) {
+                    // console.log(e.status);
+                    // console.log(e.responseText);
+                    var layer = layui.layer;
+                    layer.msg('登陆失败');
+                }
+            })
+
+            return false;
+        }
+    )
+
 })
