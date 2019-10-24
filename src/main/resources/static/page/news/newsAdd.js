@@ -101,9 +101,14 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
         postData["msgNum"] = $(".msgNum").val();
         postData["msgDate"] = $(".msgDate").val();
         postData["snum"] = $(".msgSnum").val();
+        postData["suggestion"] = $(".suggestion").val();
+        postData["approvalStatus"] = $(".approvalStatus").val();
+        postData["appealTime"] = $(".appealTime").val();
+        postData["appealConntent"] = $(".appealConntent").val();
+        postData["tnum"] = $(".msgTnum").val();
         console.log(postData);
 
-        $.ajax({
+        /*$.ajax({
             url: "/getUser",
             type: "get",
             async: false,
@@ -114,7 +119,7 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
             },
             error: function (e) {
             }
-        })
+        })*/
 
         _url = '/vioEdit'
         if (document.getElementById("flag").value == 'add') {

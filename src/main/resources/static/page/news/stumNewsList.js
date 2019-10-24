@@ -19,6 +19,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
             {field: 'msg_num', title: '违纪ID', align: "center"},
+            {field: 'appeal_time', title: '申诉时间', align: "center"},
             {title: '处理期限', templet: function () {return "7天";}, align: 'center'},
             {field: 'msg_remarks', title: '备注申诉原因', align: 'center'},
             {field: 'appeal',title: '意见', align: 'center'},
@@ -81,6 +82,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
                     body.find(".msgRemarks").val(edit.msg_remarks);
                     body.find(".msgDate").val(edit.msg_date);
                     body.find(".msgSnum").val(edit.snum);
+                    body.find(".msgTnum").val(edit.tnum);
+                    body.find(".suggestion").val(edit.suggestion);
+                    body.find(".approvalStatus").val(edit.approvalStatus);
+                    body.find(".appealTime").val(edit.appealTime);
+                    body.find(".appealConntent").val(edit.appealConntent);
                     body.find(".flag").val('edit');
                     form.render();
                 }

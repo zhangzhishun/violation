@@ -27,10 +27,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
             {field: 'snum', title: '学生学号', align: 'center'},
             {field: 'sname', title: '学生姓名', align: 'center'},
             {field: 'msg_date', title: '处分时间', align: 'center'},
-            {title: '操作', width: 100, templet: '#newsListBar', fixed: "right", align: "center"},
+            {title: '操作', width: 180, templet: '#newsListBar', fixed: "right", align: "center"},
             {title: '文件操作',templet: '#file',align: 'center'},
-            {field: 'appeal',title: '意见', align: 'center'},
-            {field: 'examine',title: '审批', align: 'center'}
+            {field: 'suggestion',title: '意见', align: 'center'},
+            {field: 'approvalStatus',title: '审批', align: 'center'}
             // {
             //     field: 'msgDate', title: '处分时间', align: 'center', templet: function (d) {
             //         return '<input type="checkbox" name="newsTop" lay-filter="newsTop" lay-skin="switch" lay-text="是|否" ' + d.newsTop + '>'
@@ -88,6 +88,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
                     body.find(".msgRemarks").val(edit.msg_remarks);
                     body.find(".msgDate").val(edit.msg_date);
                     body.find(".msgSnum").val(edit.snum);
+                    body.find(".msgTnum").val(edit.tnum);
+                    body.find(".suggestion").val(edit.suggestion);
+                    body.find(".approvalStatus").val(edit.approvalStatus);
+                    body.find(".appealTime").val(edit.appealTime);
+                    body.find(".appealConntent").val(edit.appealConntent);
                     body.find(".flag").val('edit');
                     form.render();
                 }

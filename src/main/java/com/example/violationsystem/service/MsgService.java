@@ -38,4 +38,8 @@ public class MsgService {
         return msgMapper.upMsg(msg);
     }
 
+    public int upAppeal(Message msg){
+        return msgMapper.upAppeal(msg);
+    }
+
 }

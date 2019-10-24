@@ -17,7 +17,7 @@
     <div class="layui-col-md9 layui-col-xs12">
         <div class="layui-row layui-col-space10">
             <div class="layui-col-md9 layui-col-xs7">
-                <div class="layui-form-item magt3">
+                <div class="layui-form-item magt3" id="div1">
                     <label class="layui-form-label">处分类型</label>
                     <div class="layui-input-block">
                         <input type="text" class="layui-input msgType" lay-verify="msgType" placeholder="请输入处分类型">
@@ -25,20 +25,20 @@
                 </div>
 
 
-                <div class="layui-form-item">
+                <div class="layui-form-item" id="div2">
                     <label class="layui-form-label">处分时间</label>
                     <div class="layui-input-block">
                         <input placeholder="" class="layui-input msgDate" lay-verify="msgDate" id="msgDate"></input>
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <div class="layui-form-item" id="div3">
                     <label class="layui-form-label">备注</label>
                     <div class="layui-input-block">
                         <textarea placeholder="" class="layui-textarea msgRemarks" lay-verify="msgRemarks"></textarea>
                     </div>
                 </div>
 
-                <div class="layui-form-item">
+                <div class="layui-form-item" id="div4">
                     <label class="layui-form-label">处分编号</label>
                     <div class="layui-input-block">
                         <input placeholder="" class="layui-input msgNum" id="msgNum" lay-verify="msgNum"></input>
@@ -46,10 +46,46 @@
                 </div>
 
 
-                <div class="layui-form-item">
+                <div class="layui-form-item" id="div5">
                     <label class="layui-form-label">学生学号</label>
                     <div class="layui-input-block">
                         <input placeholder="" class="layui-input msgSnum" lay-verify="msgSnum"></input>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="div6">
+                    <label class="layui-form-label">教师编号</label>
+                    <div class="layui-input-block">
+                        <input placeholder="" class="layui-input msgTnum" lay-verify="msgSnum"></input>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item" id="div7">
+                    <label class="layui-form-label">意见</label>
+                    <div class="layui-input-block">
+                        <input placeholder="" class="layui-input suggestion" lay-verify="msgSnum"></input>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="div8">
+                    <label class="layui-form-label">审批</label>
+                    <div class="layui-input-block">
+                        <input placeholder="" class="layui-input approvalStatus" lay-verify="msgSnum"></input>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="div9">
+                    <label class="layui-form-label">申诉时间</label>
+                    <div class="layui-input-block">
+                        <input id="appealTime" placeholder="" class="layui-input appealTime" lay-verify="msgSnum"></input>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="div10">
+                    <label class="layui-form-label">申诉原因</label>
+                    <div class="layui-input-block">
+                        <textarea id="appealReason" style="width:250px; height:100px" name="desc" placeholder="请输入申诉原因" class="layui-textarea appealConntent" ></textarea>
                     </div>
                 </div>
 
@@ -134,11 +170,57 @@
 <script>
     //执行一个laydate实例
     laydate.render({
-        elem: '#msgDate' //指定元素
+        elem: '#msgDate', //指定元素
+        elem: '#appealTime' //指定元素
     });
 </script>
+<script type="text/javascript">
+    function getCookie(key){
+        var cookie = document.cookie;
+        var arr = cookie.split("; ");
+        for(var i=0;i<arr.length;i++){
+            var newArr = arr[i].split("=");
+            if(key == newArr[0]){
+                return newArr[1];
+            }
+        }
+    }
 
+    /* 根据Cookie判断用户类型决定哪些修改可见 */
+    if(getCookie("role")=="tea"){
+        /* 如果角色是教师 */
+        document.getElementById('appealTime').disabled = true;
+        document.getElementById("appealReason").setAttribute("readOnly","true");
+    }else if(getCookie("role")=="stu"){
+        /* 如果角色是学生 */
+        document.getElementById("div1").style.display='none';
+        document.getElementById("div2").style.display='none';
+        document.getElementById("div3").style.display='none';
+        document.getElementById("div4").style.display='none';
+        document.getElementById("div5").style.display='none';
+        document.getElementById("div6").style.display='none';
+        document.getElementById("div7").style.display='none';
+        document.getElementById("div8").style.display='none';
+    }else if(getCookie("role")=="stuM"){
+        /* 如果角色是学生委员会 */
+        document.getElementById("div1").style.display='none';
+        document.getElementById("div2").style.display='none';
+        document.getElementById("div3").style.display='none';
+        document.getElementById("div4").style.display='none';
+        document.getElementById("div5").style.display='none';
+        document.getElementById("div6").style.display='none';
+        document.getElementById("div7").style.display='none';
+        document.getElementById("div8").style.display='none';
+    }else if(getCookie("role")=="adm"){
+        /* 如果角色是领导层 */
+        document.getElementById('appealTime').disabled = true;
+        document.getElementById("appealReason").setAttribute("readOnly","true");
+    }else{
+
+    }
+</script>
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script type="text/javascript" src="/page/news/newsAdd.js"></script>
+
 </body>
 </html>

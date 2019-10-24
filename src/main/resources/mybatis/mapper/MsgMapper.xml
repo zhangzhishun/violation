@@ -18,8 +18,9 @@
 
     </insert>
     <update id="upMsg" parameterType="com.example.violationsystem.pojo.Message">
-        update message set msg_type=#{msgType},msg_remarks=#{msgRemarks},msg_date=#{msgDate},snum=#{snum},tnum=#{tnum} where msg_num=#{msgNum}
+        update message set msg_type=#{msgType},msg_remarks=#{msgRemarks},msg_date=#{msgDate},snum=#{snum},tnum=#{tnum},suggestion=#{suggestion},approvalStatus=#{approvalStatus},appealTime=#{appealTime},appealConntent=#{appealConntent} where msg_num=#{msgNum}
     </update>
+
     <delete id="delMsg">
         delete from message where msg_num=#{msgNum}
     </delete>

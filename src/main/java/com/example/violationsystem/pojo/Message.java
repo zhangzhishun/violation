@@ -10,7 +10,42 @@ public class Message {
     private String msgNum;//处分编号
     private String snum;//学生学号
     private String tnum;//老师工号
+    private String suggestion;//意见
+    private String approvalStatus;//审批
+    private String appealTime;//审批
+    private String appealConntent;//审批
 
+    public String getAppealTime() {
+        return appealTime;
+    }
+
+    public void setAppealTime(String appealTime) {
+        this.appealTime = appealTime;
+    }
+
+    public String getAppealConntent() {
+        return appealConntent;
+    }
+
+    public void setAppealConntent(String appealConntent) {
+        this.appealConntent = appealConntent;
+    }
+
+    public String getSuggestion() {
+        return suggestion;
+    }
+
+    public void setSuggestion(String suggestion) {
+        this.suggestion = suggestion;
+    }
+
+    public String getApprovalStatus() {
+        return approvalStatus;
+    }
+
+    public void setApprovalStatus(String approvalStatus) {
+        this.approvalStatus = approvalStatus;
+    }
 
     //无此空构造函数，将报错
     public Message() {

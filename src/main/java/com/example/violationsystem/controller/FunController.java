@@ -7,6 +7,7 @@ import com.example.violationsystem.service.StuService;
 import com.example.violationsystem.service.TeaService;
 import com.google.gson.Gson;
 import com.sun.org.apache.regexp.internal.RE;
+import com.xiaoleilu.hutool.crypto.SecureUtil;
 import com.xiaoleilu.hutool.json.JSONObject;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -99,7 +101,7 @@ public class FunController {
             list = msgService.getMsgAll();
         }
 
-        System.out.println(userName);
+        System.out.println(list);
 
 
 //        System.out.println();
@@ -135,6 +137,22 @@ public class FunController {
         String dataJson = new Gson().toJson(list);
         System.out.println(dataJson);
         return "{\"code\":" + 0 + ",\"msg\":\"" + msg + "\",\"count\":" + list.size() + ",\"data\":" + dataJson + "}";
+    }
+
+    //申诉信息修改
+    @RequestMapping(value = "/upAppeal", method = {RequestMethod.POST})
+    @ResponseBody
+    public String upAppeal(@RequestBody Message message, HttpServletResponse response) {
+        System.out.println(message);
+        response.setStatus(200);
+        try {
+            msgService.upAppeal(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(500);
+        }
+        String detail = "";
+        return "{\"code\":\"" + response.getStatus() + "\",\"detail\":\"" + detail + "\"}";
     }
 
     //删除违纪
@@ -215,6 +233,13 @@ public class FunController {
     public String test(){
 
         return "test";
+    }
+
+    /** 填写申诉表 */
+    @GetMapping("/vioAddAppealPage")
+    public String vioAddAppealPage(){
+
+        return "vioAddAppealPage";
     }
     /** 上传文件 */
     @GetMapping("/uploadNewWindow")
@@ -299,4 +324,18 @@ public class FunController {
         return "下载失败";
     }
 
+
+    @GetMapping("/getCookie")
+    public String checkCookie(HttpServletRequest request) {
+        String role="";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("role")) role = cookie.getValue();
+        }
+        if (role.equals("")){
+            return "null";
+        }else{
+            return role;
+        }
+    }
 }

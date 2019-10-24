@@ -31,4 +31,9 @@ public interface MsgMapper {
      */
     int upMsg(Message msg);
 
+    /**
+     * 修改违纪
+     */
+    int upAppeal(Message msg);
+
 }
