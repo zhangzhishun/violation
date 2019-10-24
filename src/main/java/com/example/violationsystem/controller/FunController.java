@@ -132,8 +132,6 @@ public class FunController {
 
         System.out.println(userName);
 
-
-//        System.out.println();
         String dataJson = new Gson().toJson(list);
         System.out.println(dataJson);
         return "{\"code\":" + 0 + ",\"msg\":\"" + msg + "\",\"count\":" + list.size() + ",\"data\":" + dataJson + "}";
@@ -228,17 +226,10 @@ public class FunController {
     public String stuAppeal(){
         return "stuAppeal";
     }
-    /** 填写申诉表 */
-    @GetMapping("/test")
-    public String test(){
-
-        return "test";
-    }
 
     /** 填写申诉表 */
     @GetMapping("/vioAddAppealPage")
     public String vioAddAppealPage(){
-
         return "vioAddAppealPage";
     }
     /** 上传文件 */
@@ -322,20 +313,5 @@ public class FunController {
             }
         }
         return "下载失败";
-    }
-
-
-    @GetMapping("/getCookie")
-    public String checkCookie(HttpServletRequest request) {
-        String role="";
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("role")) role = cookie.getValue();
-        }
-        if (role.equals("")){
-            return "null";
-        }else{
-            return role;
-        }
     }
 }

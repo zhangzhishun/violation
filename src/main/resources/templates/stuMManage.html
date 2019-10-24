@@ -29,6 +29,17 @@
 		<a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="look">预览</a>&ndash;&gt;-->
 	</script>
 
+	<!--操作-->
+	<script type="text/html" id="stumSuggestionBar">
+		{{#  if(d.suggestion=="同意"){ }}
+		申诉成功
+		{{#  } else if(d.suggestion=="不同意"){ }}
+		申诉失败
+		{{#  } else{ }}
+
+		{{#  } }}
+	</script>
+
 </form>
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script type="text/javascript" src="/page/news/stumNewsList.js"></script>
@@ -45,6 +56,11 @@
 			});
 		});
 	});
+</script>
+
+<script type="text/javascript">
+
+
 </script>
 
 </body>

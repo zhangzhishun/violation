@@ -19,12 +19,12 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
             {field: 'msg_num', title: '违纪ID', align: "center"},
-            {field: 'appeal_time', title: '申诉时间', align: "center"},
+            {field: 'appealTime', title: '申诉时间', align: "center"},
             {title: '处理期限', templet: function () {return "7天";}, align: 'center'},
-            {field: 'msg_remarks', title: '备注申诉原因', align: 'center'},
-            {field: 'appeal',title: '意见', align: 'center'},
+            {field: 'appealConntent', title: '备注申诉原因', align: 'center'},
+            {field: 'suggestion',title: '意见', align: 'center'},
             {title: '操作', width: 200, templet: '#stumNewsListBar', fixed: "right", align: "center"},
-            {field: 'examine',title: '备注', align: 'center'}
+            {templet: '#stumSuggestionBar',title: '备注', align: 'center'}
             // {
             //     field: 'msgDate', title: '处分时间', align: 'center', templet: function (d) {
             //         return '<input type="checkbox" name="newsTop" lay-filter="newsTop" lay-skin="switch" lay-text="是|否" ' + d.newsTop + '>'
