@@ -9,7 +9,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
     //违纪列表
     var tableIns = table.render({
         elem: '#newsList',
-        url: '/getStuList',
+        url: '/yijian',
         cellMinWidth: 95,
         page: false,
         height: "full-125",
